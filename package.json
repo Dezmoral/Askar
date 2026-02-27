@@ -33,6 +33,7 @@
     ],
     "asar": true,
     "win": {
+      "icon": "build/icons/icon.ico",
       "target": [
         "nsis",
         "portable"
@@ -43,7 +44,9 @@
       "oneClick": false,
       "allowToChangeInstallationDirectory": true,
       "createDesktopShortcut": true,
-      "shortcutName": "Task Manager"
+      "shortcutName": "Task Manager",
+      "installerIcon": "build/icons/icon.ico",
+      "uninstallerIcon": "build/icons/icon.ico"
     }
   }
 }
