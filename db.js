@@ -1,8 +1,13 @@
 const fs = require("node:fs");
 const path = require("node:path");
 const crypto = require("node:crypto");
+const os = require("node:os");
 
-const DB_PATH = path.join(__dirname, "task_manager.json");
+const DATA_DIR = process.env.TM_DATA_DIR || path.join(os.homedir(), ".task-manager-desktop");
+if (!fs.existsSync(DATA_DIR)) {
+  fs.mkdirSync(DATA_DIR, { recursive: true });
+}
+const DB_PATH = path.join(DATA_DIR, "task_manager.json");
 
 const EMPTY_DB = {
   counters: { user: 1, folder: 1, note: 1 },

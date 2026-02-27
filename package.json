@@ -1,15 +1,49 @@
 {
   "name": "task-manager-desktop",
-  "version": "1.1.0",
+  "version": "1.2.0",
   "description": "Task Manager desktop app (Electron)",
   "main": "main.js",
   "author": "",
   "license": "MIT",
   "scripts": {
     "start": "electron .",
-    "dev": "electron ."
+    "dev": "electron .",
+    "pack": "electron-builder --dir",
+    "build:win": "electron-builder --win nsis portable",
+    "build:win-portable": "electron-builder --win portable"
   },
   "dependencies": {
     "electron": "34.3.0"
+  },
+  "devDependencies": {
+    "electron-builder": "^24.13.3"
+  },
+  "build": {
+    "appId": "com.taskmanager.desktop",
+    "productName": "Task Manager",
+    "directories": {
+      "output": "release"
+    },
+    "files": [
+      "main.js",
+      "preload.js",
+      "db.js",
+      "src/**/*",
+      "package.json"
+    ],
+    "asar": true,
+    "win": {
+      "target": [
+        "nsis",
+        "portable"
+      ],
+      "artifactName": "TaskManager-${version}-${arch}.${ext}"
+    },
+    "nsis": {
+      "oneClick": false,
+      "allowToChangeInstallationDirectory": true,
+      "createDesktopShortcut": true,
+      "shortcutName": "Task Manager"
+    }
   }
 }

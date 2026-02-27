@@ -5,7 +5,7 @@ Desktop-приложение для задач и заметок.
 ## Что внутри
 
 - Electron + Vanilla JS
-- Файловая БД: `task_manager.json` (без нативных модулей)
+- Локальная файловая БД `task_manager.json`
 - Авторизация/регистрация (PBKDF2 hash)
 - Папки и вложенные папки
 - Заметки, поиск, теги, pin, дедлайн, изображение
@@ -13,10 +13,9 @@ Desktop-приложение для задач и заметок.
 - Корзина (soft delete)
 - Светлая/тёмная тема
 - Режимы заметки: просмотр и редактирование
-- Сохранение заметки с возвратом в просмотр
 - Горячая клавиша сохранения: `Ctrl/Cmd + S`
 
-## Запуск
+## Разработка
 
 ```bash
 cd /Users/stanislav/Desktop/askar
@@ -24,12 +23,21 @@ npm install
 npm start
 ```
 
-Если хотите полностью чистую переустановку зависимостей:
+## Сборка в .exe
 
 ```bash
-rm -rf node_modules package-lock.json
 npm install
+npm run build:win
 ```
+
+Артефакты будут в папке `release/`:
+- `TaskManager-<version>-<arch>.exe` (installer NSIS)
+- `TaskManager-<version>-<arch>.exe` (portable)
+
+### Важно про сборку на Windows
+
+- Надёжнее всего собирать `.exe` на Windows.
+- На macOS/Linux кросс-сборка `.exe` может требовать дополнительную настройку окружения.
 
 ## Структура
 
