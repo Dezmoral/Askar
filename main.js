@@ -1,5 +1,5 @@
 const path = require("node:path");
-const { app, BrowserWindow, ipcMain, dialog } = require("electron");
+const { app, BrowserWindow, ipcMain, dialog, Menu } = require("electron");
 const db = require("./db");
 
 function createWindow() {
@@ -10,6 +10,7 @@ function createWindow() {
     minHeight: 720,
     title: "Task Manager",
     backgroundColor: "#eef3fb",
+    autoHideMenuBar: true,
     webPreferences: {
       preload: path.join(__dirname, "preload.js"),
       contextIsolation: true,
@@ -17,6 +18,8 @@ function createWindow() {
     },
   });
 
+  Menu.setApplicationMenu(null);
+  win.setMenuBarVisibility(false);
   win.loadFile(path.join(__dirname, "src", "index.html"));
   if (process.env.TM_DEBUG === "1") {
     win.webContents.openDevTools({ mode: "detach" });
